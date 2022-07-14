@@ -150,7 +150,7 @@ func TestParsedCredentialCreationData_Verify(t *testing.T) {
 		Raw                       CredentialCreationResponse
 	}
 	type args struct {
-		storedChallenge    Challenge
+		storedChallenge    URLEncodedBase64
 		verifyUser         bool
 		relyingPartyID     string
 		relyingPartyOrigin string

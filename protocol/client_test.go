@@ -28,7 +28,7 @@ func TestVerifyCollectedClientData(t *testing.T) {
 	originURL, _ := url.Parse(ccd.Origin)
 	err = ccd.Verify(storedChallenge.String(), ccd.Type, FullyQualifiedOrigin(originURL))
 	if err != nil {
-		t.Fatalf("error verifying challenge: expected %#v got %#v", Challenge(ccd.Challenge), storedChallenge)
+		t.Fatalf("error verifying challenge: expected %#v got %#v", URLEncodedBase64(ccd.Challenge), storedChallenge)
 	}
 }
 
@@ -42,9 +42,9 @@ func TestVerifyCollectedClientDataIncorrectChallenge(t *testing.T) {
 	if err != nil {
 		t.Fatalf("error creating challenge: %s", err)
 	}
-	storedChallenge := Challenge(bogusChallenge)
+	storedChallenge := URLEncodedBase64(bogusChallenge)
 	err = ccd.Verify(storedChallenge.String(), ccd.Type, ccd.Origin)
 	if err == nil {
-		t.Fatalf("error expected but not received. expected %#v got %#v", Challenge(ccd.Challenge), storedChallenge)
+		t.Fatalf("error expected but not received. expected %#v got %#v", URLEncodedBase64(ccd.Challenge), storedChallenge)
 	}
 }

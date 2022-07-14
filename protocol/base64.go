@@ -39,3 +39,7 @@ func (data URLEncodedBase64) MarshalJSON() ([]byte, error) {
 	}
 	return []byte(`"` + base64.RawURLEncoding.EncodeToString(data) + `"`), nil
 }
+
+func (data URLEncodedBase64) String() string {
+	return base64.RawURLEncoding.EncodeToString(data)
+}
